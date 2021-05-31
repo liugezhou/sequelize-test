@@ -42,7 +42,7 @@ const {Blog,User} = require('./model')
         // blogListAndCount.count, //所有总数
         // blogListAndCount.rows.map(blog=>blog.dataValues))
 
-    //链表查询
+    //链表查询1
     const blogListWithUser = await Blog.findAndCountAll({
         order:[
             ['id','desc']
@@ -59,8 +59,27 @@ const {Blog,User} = require('./model')
     })
 
     blogListWithUser.rows.map(blog=>{
-        const res = blog.dataValues
-        res.user = res.user.dataValues
-        console.log('-----=======',res)
+        const blogVal = blog.dataValues
+        blogVal.user = blogVal.user.dataValues
+        console.log('=======',blogVal)
     })
+
+    //链表查询2
+    const userListWithBlog = await User.findAndCountAll({
+        attributes:['userName','nickName'],
+        include:[
+            {
+                model: Blog
+            }
+        ]
+    })
+    console.log(
+        'userListWithBlog',
+        userListWithBlog.count,
+        userListWithBlog.rows.map(user =>{
+            const userVal = user.dataValues
+            userVal.blogs = userVal.blogs.map(blog =>blog.dataValues)
+            return userVal
+        })
+    )
 })()
