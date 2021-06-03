@@ -1,5 +1,26 @@
+### Introduce
+> 本deomo项目主要为sequlize操作mysql数据库基本操作，以及redis的简单配置操作。
+
+### Initial
+> npm init -y 
+> npm i sequelize mysql2 redis -s
+
+### Content
+> src下文件为sequlize操作mysql数据库的基础代码演示。  
+> src/seq.js:通过mysql地址、用户名、密码等配置生成一个sequelize实例，供其他模块调用。 
+> src/model.js:创建表模型，通过sequelize实例、以数据库表为基创建模型(model)，模型(model)用来数据库增删改查的操作。  
+> src/sync.js: 引入创建的model，直接在数据库中生成相应的表。  
+> src/create.js：添加数据-[Model].create 
+> src/delete.js: 删除数据-[Model].destroy
+> src/update.js: 删除数据-[Model].update 
+> src/select.js: 删除数据-[Model].findOne | findAll | findAndCountAll 
+
+> src/conf/dn.js: redis 地址与port常量。
+> src/cache/_redis.js :创建客户端，封装set与get
+
+### 笔记
 #### 介绍
-> Sequelize是 一个基于promise的Node.js ORM,目前支持 Postgres, MySQL, MariaDB, SQLite 以及 Microsoft SQL Server. 它具有强大的事务支持, 关联关系, 预读和延迟加载,读取复制等功能。   
+> Sequelize是 一个基于promise的Node.js ORM(Object Relation Mapping),目前支持 Postgres, MySQL, MariaDB, SQLite 以及 Microsoft SQL Server. 它具有强大的事务支持, 关联关系, 预读和延迟加载,读取复制等功能。   
 >  支持 Node v10 及更高版本以便使用 ES6 功能。
 
 #### 入门
@@ -72,7 +93,7 @@ seq.authenticate().then(()=>{
 #### 删除实例
 > const user = await User.detroy({where:{id:1}})
 
-#### 简单的insert查询
+#### 简单的insert操作
 > conse liugezhou = User.create({firstName:'Liu',lastName:'zhou'})
 
 #### 简单的select查询
