@@ -2,8 +2,8 @@
 > 本deomo项目主要为sequlize操作mysql数据库基本操作，以及redis的简单配置操作。
 
 ### Initial
-> npm init -y 
-> npm i sequelize mysql2 redis -s
+> + npm init -y   
+> + npm i sequelize mysql2 redis -s
 
 ### Content
 > src下文件为sequlize操作mysql数据库的基础代码演示。  
